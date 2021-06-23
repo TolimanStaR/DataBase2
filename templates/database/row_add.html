@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h3>Добавить запись</h3>
+    <hr>
+    <form action="{% url 'table_add_row_success' pk=table.id %}" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-outline-success" type="submit" value="Добавить">
+    </form>
+{% endblock %}

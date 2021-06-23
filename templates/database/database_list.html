@@ -1,0 +1,31 @@
+{#{% extends 'index.html' %}#}
+{##}
+{#{% block title %}{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#{% endblock %}#}
+
+{% extends 'index.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+    .logo { height: 100px; width: 200px; overflow: hidden; }
+    </style>
+    <h3>Базы данных</h3>
+    <hr>
+    {% for database in object_list %}
+        <div class="card mb-3">
+            <img src="https://www.morganstanley.com/pub/content/dam/msdotcom/ideas/rise-of-the-tech-super-platforms/tw-rise-of-tech.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ database.title }}</h5>
+                <p class="card-text">{{ database.description }}</p>
+                <p class="card-text"><small class="text-muted">Last updated ? mins ago</small></p>
+                <p><a href="{% url 'db_detail' pk=database.id %}" class="btn btn-success">База данных "{{ database.title }}"</a></p>
+            </div>
+        </div>
+{#        <p><a href="{% url 'db_detail' pk=database.id %}">База данных "{{ database.title }}"</a></p>#}
+    {% endfor %}
+    <a class="btn btn-outline-success" href="{% url 'db_create' %}">Создать базу данных</a>
+{% endblock %}

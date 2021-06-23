@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <h3>Настройки базы данных</h3>
+    <hr>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Сохранить" class="btn btn-outline-success">
+    </form>
+{% endblock %}

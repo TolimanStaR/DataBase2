@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <h3>База данных {{ object.title }}</h3>
+    <p>{{ object.description }}</p>
+    <a class="btn btn-outline-success" href="{% url 'db_update' pk=object.id %}">Редактировать</a>
+    <a class="btn btn-outline-danger">Удалить</a>
+    <hr>
+    <h5>Управление таблицами</h5>
+    {% for table in object.tables.all %}
+        <div class="card" style="margin-bottom: 20px">
+            <h5 class="card-header">{{table.title}}</h5>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text">Штатная таблица для базы данных {{ object.title }}</p>
+                <p><a href="{% url 'table_detail' pk=table.id %}" class="btn btn-success">Таблица {{ table.title }} (нажмите
+            чтобы изменить)</a></p>
+            </div>
+        </div>
+    {% endfor %}
+    <a href="{% url 'table_create' pk=object.id %}" class="btn btn-outline-success">Добавить таблицу</a>
+{% endblock %}
